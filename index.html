@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Inventory — Computer Lab H2-6</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>Computer Lab H2-6 — Inventory</h1>
+    <div class="actions">
+      <input id="search" type="search" placeholder="Search by name or serial..." />
+      <button id="addItemBtn">+ Add Item</button>
+      <button id="exportBtn">Export CSV</button>
+      <input id="importFile" type="file" accept=".csv" style="display:none" />
+      <button id="importBtn">Import CSV</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Form Modal -->
+    <div id="modal" class="modal hidden" aria-hidden="true">
+      <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <h2 id="modalTitle">Add Item</h2>
+        <form id="itemForm">
+          <input type="hidden" id="itemId" />
+          <label>
+            Name
+            <input id="name" required />
+          </label>
+          <label>
+            Category
+            <input id="category" placeholder="e.g. PC, Cable, Keyboard" />
+          </label>
+          <label>
+            Serial No.
+            <input id="serial" />
+          </label>
+          <label>
+            Quantity
+            <input id="quantity" type="number" min="0" value="1" required />
+          </label>
+          <label>
+            Location
+            <input id="location" placeholder="H2-6 Shelf A, etc." />
+          </label>
+          <label>
+            Notes
+            <textarea id="notes" rows="3"></textarea>
+          </label>
+          <div class="form-actions">
+            <button type="submit" id="saveBtn">Save</button>
+            <button type="button" id="cancelBtn">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Items Table -->
+    <section>
+      <table class="items-table" aria-describedby="tableDesc">
+        <caption id="tableDesc">Inventory items list</caption>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Serial No.</th>
+            <th>Qty</th>
+            <th>Location</th>
+            <th>Notes</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="itemsTbody"></tbody>
+      </table>
+      <p id="emptyHint" class="muted">No items yet. Click <strong>Add Item</strong> to begin.</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small>Inventory Website — Computer Lab H2-6</small>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
