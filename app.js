@@ -62,8 +62,8 @@ function renderList(filterText=''){
       <td>${escapeHtml(it.location||'')}</td>
       <td>${escapeHtml(it.notes||'')}</td>
       <td>
-        <button data-id="${it.id}" class="edit">Edit</button>
-        <button data-id="${it.id}" class="del">Delete</button>
+    <button data-id="${it.id}" class="edit">✏️ Edit</button>
+    <button data-id="${it.id}" class="del">🗑️ Delete this item</button>
       </td>
     `;
     dom.itemsTbody.appendChild(tr);
@@ -135,11 +135,13 @@ dom.itemsTbody.addEventListener('click', (e) => {
     const it = items.find(x=>x.id===id);
     if(it) openModal(it);
   } else if(btn.classList.contains('del')){
-    if(confirm('Delete this item?')) {
-      items = items.filter(x => x.id !== id);
-      saveItems();
-      renderList(dom.search.value);
-    }
+   if (confirm('⚠️ Are you sure you want to delete this item?\nThis action cannot be undone.')) {
+   items = items.filter(x => x.id !== id);
+   saveItems();
+   renderList(dom.search.value);
+   alert('🗑️ Item successfully deleted.');
+}
+
   }
 });
 

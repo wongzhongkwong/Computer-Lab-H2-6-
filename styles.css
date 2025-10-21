@@ -62,3 +62,23 @@ input,textarea{width:100%;padding:8px 10px;border-radius:8px;border:1px solid #e
   input[type="search"]{width:100%}
   .modal-dialog{width:92%}
 }
+button.edit {
+  background-color: #2563eb; /* blue */
+  transition: 0.3s;
+}
+
+button.del {
+  background-color: #ef4444; /* red */
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+button.del:hover {
+  background-color: #dc2626; /* darker red on hover */
+  transform: scale(1.05);
+}
