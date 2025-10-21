@@ -62,8 +62,10 @@ function renderList(filterText=''){
       <td>${escapeHtml(it.location||'')}</td>
       <td>${escapeHtml(it.notes||'')}</td>
       <td>
-    <button data-id="${it.id}" class="edit">✏️ Edit</button>
-    <button data-id="${it.id}" class="del">🗑️ Delete this item</button>
+      <button data-id="${it.id}" class="edit">✏️ Edit</button>
+     <button data-id="${it.id}" class="del">🗑️ Delete this item</button>
+</td>
+
       </td>
     `;
     dom.itemsTbody.appendChild(tr);

@@ -82,3 +82,42 @@ button.del:hover {
   background-color: #dc2626; /* darker red on hover */
   transform: scale(1.05);
 }
+
+/* === Edit & Delete Button Styles === */
+button.edit,
+button.del {
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+}
+
+/* Edit button (blue) */
+button.edit {
+  background-color: #2563eb; /* bright blue */
+  color: #fff;
+  box-shadow: 0 2px 5px rgba(37, 99, 235, 0.2);
+}
+
+button.edit:hover {
+  background-color: #1d4ed8; /* darker blue */
+  transform: scale(1.05);
+}
+
+/* Delete button (red) */
+button.del {
+  background-color: #ef4444; /* red */
+  color: #fff;
+  box-shadow: 0 2px 5px rgba(239, 68, 68, 0.2);
+}
+
+button.del:hover {
+  background-color: #dc2626; /* darker red */
+  transform: scale(1.05);
+}
+
+.items-table td button {
+  margin-right: 6px;
+}
