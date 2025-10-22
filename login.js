@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
   toggle.addEventListener('click', () => {
     const isHidden = pass.type === 'password';
     pass.type = isHidden ? 'text' : 'password';
-    toggle.textContent = isHidden ? '🙈' : '👁️';
+    toggle.textContent = isHidden ? '🙈 Hide' : '👁️ Show';
     toggle.setAttribute('aria-label', isHidden ? 'Hide password' : 'Show password');
   });
 });
