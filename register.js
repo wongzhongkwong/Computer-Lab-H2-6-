@@ -20,52 +20,49 @@ function saveUsers(users) {
   localStorage.setItem(USERS_KEY, JSON.stringify(users));
 }
 
-document.getElementById('registerForm').addEventListener('submit', async (e) => {
-  e.preventDefault();
-
-  const username = document.getElementById('username').value.trim();
-  const password = document.getElementById('password').value;
-  const role = document.getElementById('role').value;
-
-  if (!username || !password) {
-    return alert('Please fill all fields.');
-  }
-
-  let users = loadUsers();
-
-  if (users.some(u => u.username.toLowerCase() === username.toLowerCase())) {
-    return alert('Username already exists!');
-  }
-
-  const hashed = await hashPassword(password);
-  const newUser = { username, password: hashed, role, createdAt: new Date().toISOString() };
-
-  users.push(newUser);
-  saveUsers(users);
-
-  document.getElementById('registerMsg').textContent = `✅ Registered successfully as ${role}. Redirecting...`;
-  setTimeout(() => window.location.href = 'login.html', 1500);
-});
-
-document.getElementById('togglePassword').addEventListener('click', () => {
-  const pass = document.getElementById('password');
-  const btn = document.getElementById('togglePassword');
-  const isHidden = pass.type === 'password';
-  pass.type = isHidden ? 'text' : 'password';
-  btn.textContent = isHidden ? '🙈 Hide' : '👁️ Show';
-});
-
+// === Form submit handler ===
 document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('registerForm');
   const toggle = document.getElementById('togglePassword');
   const pass = document.getElementById('password');
-  if (!toggle || !pass) return;
 
+  if (!form || !pass || !toggle) return;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const username = document.getElementById('username').value.trim();
+    const password = pass.value;
+    const role = document.getElementById('role').value;
+
+    if (!username || !password) {
+      return alert('Please fill all fields.');
+    }
+
+    let users = loadUsers();
+
+    if (users.some(u => u.username.toLowerCase() === username.toLowerCase())) {
+      return alert('Username already exists!');
+    }
+
+    const hashed = await hashPassword(password);
+    const newUser = { username, password: hashed, role, createdAt: new Date().toISOString() };
+
+    users.push(newUser);
+    saveUsers(users);
+
+    document.getElementById('registerMsg').textContent =
+      `✅ Registered successfully as ${role}. Redirecting...`;
+    setTimeout(() => (window.location.href = 'login.html'), 1500);
+  });
+
+  // === Password visibility toggle ===
   toggle.addEventListener('click', () => {
-    const showing = pass.type === 'password';
-    pass.type = showing ? 'text' : 'password';
-    toggle.textContent = showing ? '🙈' : '👁️';
-    toggle.setAttribute('aria-pressed', String(showing));
-    toggle.setAttribute('aria-label', showing ? 'Hide password' : 'Show password');
-    pass.focus(); // keep focus in the input after toggle
+    const isHidden = pass.type === 'password';
+    pass.type = isHidden ? 'text' : 'password';
+    toggle.textContent = isHidden ? '🙈 Hide' : '👁️ Show';
+    toggle.setAttribute('aria-pressed', String(isHidden));
+    toggle.setAttribute('aria-label', isHidden ? 'Hide password' : 'Show password');
+    pass.focus();
   });
 });
