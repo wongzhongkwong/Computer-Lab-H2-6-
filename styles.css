@@ -121,3 +121,13 @@ button.del:hover {
 .items-table td button {
   margin-right: 6px;
 }
+.login-page {
+  display:flex; align-items:center; justify-content:center;
+  height:100vh; background:var(--bg);
+}
+.login-box {
+  background:#fff; padding:28px 32px; border-radius:12px;
+  box-shadow:var(--shadow); width:320px; text-align:center;
+}
+.login-box input {width:100%; margin:8px 0; padding:8px;}
+.login-box button {width:100%; margin-top:10px;}

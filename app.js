@@ -22,6 +22,30 @@ const dom = {
   importFile: document.getElementById('importFile'),
 };
 
+// === LOGIN CHECK ===
+const session = JSON.parse(localStorage.getItem('session') || 'null');
+if (!session) {
+  window.location.href = 'login.html';
+}
+const isAdmin = session.role === 'admin';
+document.addEventListener('DOMContentLoaded', () => {
+  document.body.insertAdjacentHTML('afterbegin',
+    `<div class="topbar-user">👋 ${session.username} (${session.role})
+       <button id="logoutBtn" class="secondary">Logout</button>
+     </div>`);
+  document.getElementById('logoutBtn').addEventListener('click', () => {
+    localStorage.removeItem('session');
+    window.location.href = 'login.html';
+  });
+});
+
+if (!isAdmin) {
+  dom.addItemBtn.disabled = true;
+  dom.exportBtn.disabled = true;
+  dom.importBtn.disabled = true;
+  dom.itemsTbody.addEventListener('click', e => e.preventDefault()); // block edit/delete
+}
+
 let items = [];
 
 function loadItems(){
