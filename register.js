@@ -54,3 +54,18 @@ document.getElementById('togglePassword').addEventListener('click', () => {
   pass.type = isHidden ? 'text' : 'password';
   btn.textContent = isHidden ? '🙈 Hide' : '👁️ Show';
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const toggle = document.getElementById('togglePassword');
+  const pass = document.getElementById('password');
+  if (!toggle || !pass) return;
+
+  toggle.addEventListener('click', () => {
+    const showing = pass.type === 'password';
+    pass.type = showing ? 'text' : 'password';
+    toggle.textContent = showing ? '🙈' : '👁️';
+    toggle.setAttribute('aria-pressed', String(showing));
+    toggle.setAttribute('aria-label', showing ? 'Hide password' : 'Show password');
+    pass.focus(); // keep focus in the input after toggle
+  });
+});
