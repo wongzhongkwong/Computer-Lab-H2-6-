@@ -46,3 +46,11 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
   document.getElementById('registerMsg').textContent = `✅ Registered successfully as ${role}. Redirecting...`;
   setTimeout(() => window.location.href = 'login.html', 1500);
 });
+
+document.getElementById('togglePassword').addEventListener('click', () => {
+  const pass = document.getElementById('password');
+  const btn = document.getElementById('togglePassword');
+  const isHidden = pass.type === 'password';
+  pass.type = isHidden ? 'text' : 'password';
+  btn.textContent = isHidden ? '🙈 Hide' : '👁️ Show';
+});
