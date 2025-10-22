@@ -61,3 +61,16 @@ document.addEventListener('DOMContentLoaded', () => {
     pass.focus(); // keep focus in the input after toggle
   });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const toggle = document.getElementById('togglePassword');
+  const pass = document.getElementById('password');
+  if (!toggle || !pass) return;
+
+  toggle.addEventListener('click', () => {
+    const isHidden = pass.type === 'password';
+    pass.type = isHidden ? 'text' : 'password';
+    toggle.textContent = isHidden ? '🙈' : '👁️';
+    toggle.setAttribute('aria-label', isHidden ? 'Hide password' : 'Show password');
+  });
+});

@@ -152,37 +152,39 @@ button.del:hover {
   font-size: 13px;
 }
 
-.password-field button:hover {
-  background: #d1d5db;
-}
-
-/* Password field (fix for input:100% global rule) */
+/* --- Fix show/hide password layout --- */
 .password-field {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 }
 
-/* Override global input:100% and allow shrinking in flex */
 .password-field input {
-  flex: 1;         /* take remaining space */
-  min-width: 0;    /* allow input to shrink inside a flex container */
-  width: auto;     /* override the global width:100% */
+  flex: 1;
+  min-width: 0;
+  width: auto; /* override global 100% */
 }
 
-/* Toggle button styling */
 .password-field button {
   flex: 0 0 auto;
+  width: auto; /* ✅ override global button width */
   background: #e5e7eb;
   color: #111;
-  border-radius: 6px;
   border: 1px solid #ccc;
   padding: 6px 10px;
+  border-radius: 6px;
   cursor: pointer;
-  font-size: 13px;
+  font-size: 14px;
+  box-shadow: none; /* optional, to match gray style */
+}
+
+.password-field button:hover {
+  background: #d1d5db;
 }
 
 .password-field button:focus {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
+
+
