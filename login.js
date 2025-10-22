@@ -1,7 +1,6 @@
 /// login.js
 const USERS_KEY = 'inventory_users_v1';
 
-// Load users
 function loadUsers() {
   try {
     return JSON.parse(localStorage.getItem(USERS_KEY) || '[]');
@@ -10,7 +9,6 @@ function loadUsers() {
   }
 }
 
-// Hash password (same function as in register.js)
 async function hashPassword(password) {
   const enc = new TextEncoder().encode(password);
   const buf = await crypto.subtle.digest('SHA-256', enc);
@@ -39,5 +37,13 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
   }));
 
   window.location.href = 'index.html';
+});
+
+document.getElementById('togglePassword').addEventListener('click', () => {
+  const pass = document.getElementById('password');
+  const btn = document.getElementById('togglePassword');
+  const isHidden = pass.type === 'password';
+  pass.type = isHidden ? 'text' : 'password';
+  btn.textContent = isHidden ? '🙈 Hide' : '👁️ Show';
 });
 
